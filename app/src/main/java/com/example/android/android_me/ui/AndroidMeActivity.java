@@ -46,7 +46,24 @@ public class AndroidMeActivity extends AppCompatActivity {
                 .add(R.id.head_container, headFragment)
                 .commit();
 
-        // TODO (5) Create and display the body and leg BodyPartFragments
+        // COMPLETED (5) Create and display the body and leg BodyPartFragments
+        BodyPartFragment bodyFragment = new BodyPartFragment();
+
+        bodyFragment.setImageIds(AndroidImageAssets.getBodies());
+        bodyFragment.setListIndex(2);
+
+        fragmentManager.beginTransaction()
+            .add(R.id.body_container, bodyFragment)
+            .commit();
+
+        BodyPartFragment legFragment = new BodyPartFragment();
+
+        legFragment.setImageIds(AndroidImageAssets.getLegs());
+        legFragment.setListIndex(3);
+
+        fragmentManager.beginTransaction()
+            .add(R.id.leg_container, legFragment)
+            .commit();
 
     }
 }
