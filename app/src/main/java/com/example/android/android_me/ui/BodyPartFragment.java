@@ -26,12 +26,13 @@ import android.widget.ImageView;
 import com.example.android.android_me.R;
 import com.example.android.android_me.data.AndroidImageAssets;
 
+import java.util.List;
+
 public class BodyPartFragment extends Fragment {
 
-    // TODO (1) Create a setter method and class variable to set and store of a list of image resources
-
-    // TODO (2) Create another setter method and variable to track and set the index of the list item to display
-        // ex. index = 0 is the first image id in the given list , index 1 is the second, and so on
+    // Variables to store a list of image resources and the index of the image that this fragment displays
+    private List<Integer> mImageIds;
+    private int mListIndex;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the fragment
@@ -59,6 +60,22 @@ public class BodyPartFragment extends Fragment {
 
         // Return the rootView
         return rootView;
+    }
+
+    // Setter methods for keeping track of the list images this fragment can display and which image
+    // in the list is currently being displayed
+
+    // COMPLETE (1) Create a setter method and class variable to set and store of a list of image resources
+
+    public void setImageIds(List<Integer> imageIds) {
+        mImageIds = imageIds;
+    }
+
+    // COMPLETE (2) Create another setter method and variable to track and set the index of the list item to display
+    // ex. index = 0 is the first image id in the given list , index 1 is the second, and so on
+
+    public void setListIndex(int index) {
+        mListIndex = index;
     }
 
 }
