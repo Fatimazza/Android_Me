@@ -18,6 +18,7 @@ package com.example.android.android_me.ui;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import com.example.android.android_me.R;
 
@@ -35,11 +36,13 @@ public class MainActivity extends AppCompatActivity implements MasterListFragmen
 
     }
 
+    // COMPLETED (5) Define the behavior for onImageSelected; create a Toast that displays the position clicked
+    // Define the behavior for onImageSelected
+
     @Override
     public void onImageSelected(int position) {
-
+        // Create a Toast that displays the position that was clicked
+        Toast.makeText(this, "Position clicked = " +position, Toast.LENGTH_SHORT).show();
     }
-
-    // TODO (5) Define the behavior for onImageSelected; create a Toast that displays the position clicked
 
 }
