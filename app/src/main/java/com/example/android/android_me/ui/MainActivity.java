@@ -21,6 +21,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.Toast;
 
 import com.example.android.android_me.R;
@@ -35,14 +36,35 @@ public class MainActivity extends AppCompatActivity implements MasterListFragmen
     private int bodyIndex;
     private int legIndex;
 
-    // TODO (3) Create a variable to track whether to display a two-pane or single-pane UI
+    // COMPLETED (3) Create a variable to track whether to display a two-pane or single-pane UI
         // A single-pane display refers to phone screens, and two-pane to larger tablet screens
+    private boolean mTwoPane;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Determine if you're creating a two-pane or single-pane display
+
+        if (findViewById(R.id.android_me_linear_layout) != null) {
+
+            // This LinearLayout will only initially exist in the two-pane tablet case
+            mTwoPane = true;
+
+            // Change the GridView to space out the images more on tablet
+            GridView gridView = (GridView) findViewById(R.id.images_grid_view);
+            gridView.setNumColumns(2);
+
+            // Getting rid of the "Next" button that appears on phones for launching a separate activity
+            Button nextButton = (Button) findViewById(R.id.next_button);
+            nextButton.setVisibility(View.GONE);
+
+        } else {
+            // We're in single-pane mode and displaying fragments on a phone in separate activities
+            mTwoPane = false;
+        }
 
         // TODO (4) If you are making a two-pane display, add new BodyPartFragments to create an initial Android-Me image
         // Also, for the two-pane display, get rid of the "Next" button in the master list fragment
