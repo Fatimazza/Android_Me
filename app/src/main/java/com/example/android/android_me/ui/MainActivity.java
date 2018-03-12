@@ -73,9 +73,9 @@ public class MainActivity extends AppCompatActivity implements MasterListFragmen
         // COMPLETED (3) Put this information in a Bundle and attach it to an Intent that will launch an AndroidMeActivity
 
         Bundle b = new Bundle();
-        b.putInt("head index", headIndex);
-        b.putInt("body index", bodyIndex);
-        b.putInt("leg index", legIndex);
+        b.putInt("headIndex", headIndex);
+        b.putInt("bodyIndex", bodyIndex);
+        b.putInt("legIndex", legIndex);
 
         // Attach the Bundle to an intent
         final Intent intent = new Intent(this, AndroidMeActivity.class);
