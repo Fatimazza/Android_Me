@@ -16,6 +16,7 @@
 
 package com.example.android.android_me.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
@@ -66,7 +67,17 @@ public class MainActivity extends AppCompatActivity implements MasterListFragmen
             default: break;
         }
 
-        // TODO (3) Put this information in a Bundle and attach it to an Intent that will launch an AndroidMeActivity
+
+        // COMPLETED (3) Put this information in a Bundle and attach it to an Intent that will launch an AndroidMeActivity
+
+        Bundle b = new Bundle();
+        b.putInt("head index", headIndex);
+        b.putInt("body index", bodyIndex);
+        b.putInt("leg index", legIndex);
+
+        // Attach the Bundle to an intent
+        final Intent intent = new Intent(this, AndroidMeActivity.class);
+        intent.putExtras(b);
 
         // TODO (4) Get a reference to the "Next" button and launch the intent when this button is clicked
 
