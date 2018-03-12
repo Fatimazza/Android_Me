@@ -18,6 +18,7 @@ package com.example.android.android_me.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +26,7 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 import com.example.android.android_me.R;
+import com.example.android.android_me.data.AndroidImageAssets;
 
 // This activity is responsible for displaying the master list of all images
 // Implement the MasterListFragment callback, OnImageClickListener
@@ -61,13 +63,43 @@ public class MainActivity extends AppCompatActivity implements MasterListFragmen
             Button nextButton = (Button) findViewById(R.id.next_button);
             nextButton.setVisibility(View.GONE);
 
+
+            // COMPLETED (4) If you are making a two-pane display, add new BodyPartFragments to create an initial Android-Me image
+            // Also, for the two-pane display, get rid of the "Next" button in the master list fragment
+
+            if (savedInstanceState == null) {
+
+                // In two-pane mode, add initial BodyPartFragments to the screen
+                FragmentManager fragmentManager = getSupportFragmentManager();
+
+                // Creating a new head fragment
+                BodyPartFragment headFragment = new BodyPartFragment();
+                headFragment.setImageIds(AndroidImageAssets.getHeads());
+                // Add the fragment to its container using a transaction
+                fragmentManager.beginTransaction()
+                    .add(R.id.head_container, headFragment)
+                    .commit();
+
+                // New body fragment
+                BodyPartFragment bodyFragment = new BodyPartFragment();
+                bodyFragment.setImageIds(AndroidImageAssets.getBodies());
+                fragmentManager.beginTransaction()
+                    .add(R.id.body_container, bodyFragment)
+                    .commit();
+
+                // New leg fragment
+                BodyPartFragment legFragment = new BodyPartFragment();
+                legFragment.setImageIds(AndroidImageAssets.getLegs());
+                fragmentManager.beginTransaction()
+                    .add(R.id.leg_container, legFragment)
+                    .commit();
+
+            }
+
         } else {
             // We're in single-pane mode and displaying fragments on a phone in separate activities
             mTwoPane = false;
         }
-
-        // TODO (4) If you are making a two-pane display, add new BodyPartFragments to create an initial Android-Me image
-        // Also, for the two-pane display, get rid of the "Next" button in the master list fragment
 
     }
 
