@@ -16,6 +16,7 @@
 
 package com.example.android.android_me.ui;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -43,8 +44,21 @@ public class MasterListFragment extends Fragment {
         void onImageSelected(int position);
     }
 
-    // TODO (2) Override onAttach to make sure that the container activity has implemented the callback
+    // COMPLETED (2) Override onAttach to make sure that the container activity has implemented the callback
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        // This makes sure that the host activity has implemented the callback interface
+        // If not, it throws an exception
+        try {
+            mCallback = (OnImageClickListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString()
+                + " must implement OnImageClickListener");
+        }
+    }
 
     // Mandatory empty constructor
     public MasterListFragment() {
